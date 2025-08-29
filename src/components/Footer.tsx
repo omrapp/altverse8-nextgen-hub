@@ -1,8 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Facebook, Twitter, Instagram, Linkedin, Youtube, Mail, MapPin, Phone } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
+  const { t } = useLanguage();
   const socialLinks = [
     { icon: <Facebook className="w-5 h-5" />, href: "#", label: "Facebook" },
     { icon: <Twitter className="w-5 h-5" />, href: "#", label: "Twitter" },
@@ -12,18 +15,15 @@ const Footer = () => {
   ];
 
   const quickLinks = [
-    { name: "About Us", href: "#about" },
-    { name: "Programs", href: "#programs" },
-    { name: "Social App", href: "#app" },
-    { name: "Community", href: "#community" },
-    { name: "Contact", href: "#contact" },
+    { name: t('nav.about'), href: "/about" },
+    { name: t('nav.programs'), href: "/programs" },
+    { name: t('nav.socialApp'), href: "/social-app" },
+    { name: t('nav.contact'), href: "/contact" },
   ];
 
   const legalLinks = [
-    { name: "Privacy Policy", href: "/privacy" },
-    { name: "Terms of Service", href: "/terms" },
-    { name: "Cookie Policy", href: "/cookies" },
-    { name: "Accessibility", href: "/accessibility" },
+    { name: t('footer.privacy'), href: "/privacy" },
+    { name: t('footer.terms'), href: "/terms" },
   ];
 
   const regions = [
@@ -51,8 +51,7 @@ const Footer = () => {
               </div>
               
               <p className="text-background/80 text-sm leading-relaxed mb-6">
-                Pioneering next-generation lifestyles and ecosystem building through 
-                education, entrepreneurship, and community development across three dynamic regions.
+                {t('footer.description')}
               </p>
               
               <div className="flex space-x-3">
@@ -77,12 +76,12 @@ const Footer = () => {
               <ul className="space-y-3">
                 {quickLinks.map((link) => (
                   <li key={link.name}>
-                    <a
-                      href={link.href}
+                    <Link
+                      to={link.href}
                       className="text-background/70 hover:text-primary text-sm transition-colors"
                     >
                       {link.name}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -149,7 +148,7 @@ const Footer = () => {
           <div className="flex flex-col lg:flex-row justify-between items-center space-y-4 lg:space-y-0">
             {/* Copyright */}
             <div className="text-background/70 text-sm">
-              © {new Date().getFullYear()} AltVerse8 Foundation. All rights reserved.
+              {t('footer.copyright')}
             </div>
 
             {/* Legal Links */}
